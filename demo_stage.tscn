@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://7daryop7b5rf"]
+[gd_scene load_steps=3 format=3 uid="uid://7daryop7b5rf"]
 
 [ext_resource type="Texture2D" uid="uid://xk27sksxjy56" path="res://demo_stage.png" id="1_qmytm"]
-[ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="2_4p544"]
-[ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="3_rr303"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08n8j"]
-radius = 68.0
-height = 146.0
+[ext_resource type="PackedScene" uid="uid://b0fokcr2ckluq" path="res://scenes/player.tscn" id="2_ee7iv"]
 
 [node name="DemoStage" type="Node2D"]
 position = Vector2(302, 254)
@@ -32,24 +27,4 @@ polygon = PackedVector2Array(-1, 1, 91, 155, 69, 311, 67, 579, 111, 739, 91, 911
 position = Vector2(-296, -232)
 polygon = PackedVector2Array(6, -1, 80, 155, 172, 155, 224, 141, 314, 157, 624, 155, 704, 185, 952, 185, 1034, 117, 1264, 135, 1654, 135, 1802, 139, 2120, 171, 2176, 231, 2252, 231, 2312, 155, 2398, 147, 2400, 625, 2458, 669, 2458, 1289, 2430, 1455, 2430, 1617, 2456, 1709, 2576, 1707, 2568, -1)
 
-[node name="Player" type="CharacterBody2D" parent="."]
-collision_mask = 7
-script = ExtResource("2_4p544")
-speed = 400.0
-gravity = 1200.0
-jump_velocity = -600.0
-dash_speed = 1800.0
-dash_cooldown = 0.8
-initial_dash_duration = 0.1
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(147, 772)
-scale = Vector2(4.1875, 4.75)
-texture = ExtResource("3_rr303")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(146, 772)
-shape = SubResource("CapsuleShape2D_08n8j")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(146, 772)
+[node name="Player" parent="." instance=ExtResource("2_ee7iv")]
