@@ -1,3 +1,49 @@
-[gd_scene format=3 uid="uid://7daryop7b5rf"]
+[gd_scene load_steps=5 format=3 uid="uid://7daryop7b5rf"]
+
+[ext_resource type="Texture2D" uid="uid://xk27sksxjy56" path="res://demo_stage.png" id="1_qmytm"]
+[ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="2_4p544"]
+[ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="3_rr303"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08n8j"]
+radius = 68.0
+height = 146.0
 
 [node name="DemoStage" type="Node2D"]
+position = Vector2(302, 254)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(978, 660)
+scale = Vector2(4.05625, 3.75)
+texture = ExtResource("1_qmytm")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(978, 660)
+scale = Vector2(4.05625, 3.75)
+polygon = PackedVector2Array(144, -19.2, 144, -17.3, 136.6, -14, 134, -14, 127, -5, 125.4, -5, 123.5, 3, 122, 3, 122, 15.5, 127, 24.4, 127, 25.3, 121, 36.5, 121, 68.5, 126, 77.4, 126, 79.9, 132, 84.9, 132, 86.4, 143, 90.4, 143, 92, 226.8, 92, 241.9, 78, 243.6, 78, 248.5, 57, 250, 57, 250, 10.5, 245, 1.5, 245, -0.899994, 239, -6, 239, -7.39999, 218, -15.5, 218, -17.1, 195.9, -16, 176.2, -16)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-313, -240)
+polygon = PackedVector2Array(-1, 1, 91, 155, 69, 311, 67, 579, 111, 739, 91, 911, 85, 1083, 83, 1317, 83, 1525, 103, 1677, 169, 1689, 299, 1689, 427, 1665, 771, 1671, 769, 1601, 825, 1299, 829, 1207, 893, 1121, 1247, 1121, 1287, 619, 1365, 545, 1501, 545, 1577, 601, 1561, 693, 1551, 1097, 1543, 1465, 1499, 1697, 1975, 1713, 2069, 1689, 2151, 1697, 2189, 1677, 2289, 1677, 2349, 1711, 2417, 1711, 2593, 1711, 2589, 1803, -9, 1801)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-296, -232)
+polygon = PackedVector2Array(6, -1, 80, 155, 172, 155, 224, 141, 314, 157, 624, 155, 704, 185, 952, 185, 1034, 117, 1264, 135, 1654, 135, 1802, 139, 2120, 171, 2176, 231, 2252, 231, 2312, 155, 2398, 147, 2400, 625, 2458, 669, 2458, 1289, 2430, 1455, 2430, 1617, 2456, 1709, 2576, 1707, 2568, -1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+collision_mask = 7
+script = ExtResource("2_4p544")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(147, 772)
+scale = Vector2(4.1875, 4.75)
+texture = ExtResource("3_rr303")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(146, 772)
+shape = SubResource("CapsuleShape2D_08n8j")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(146, 772)
