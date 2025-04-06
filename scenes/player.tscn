@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bnr2xrxjadrsr" path="res://scenes/death_particles.tscn" id="2_qlg0r"]
-[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://0oy2sqhb4sx" path="res://scenes/camera_2d.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://b1mhhu5vlbixl" path="res://textures/wombat1.png" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
