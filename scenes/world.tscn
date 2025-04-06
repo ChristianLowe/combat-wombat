@@ -69,3 +69,7 @@ tile_set = SubResource("TileSet_036b0")
 [node name="Player" parent="." instance=ExtResource("3_71j4m")]
 position = Vector2(144, 141)
 scale = Vector2(2, 2)
+speed = 200.0
+dash_speed = 400.0
+dash_cooldown = 0.01
+initial_dash_duration = 0.2
