@@ -87,52 +87,54 @@ func update_sprite_flip():
 		sprite.flip_h = false
 	elif direction < 0:
 		sprite.flip_h = true
-
 func _on_detection_area_body_entered(body):
-	# Ignore collisions if already stunned
+	# Simplified: Only triggers if player is NOT dashing and enemy is NORMAL
+	print(body.name, " entered ", self.name, "'s detection area.")
+
+	# Ignore collisions if enemy is already stunned
 	if current_state == State.STUNNED:
+		print("Enemy is stunned, ignoring interaction.")
 		return
 
 	if body.is_in_group("player"):
+		print("Detected body is player.")
 		var player = body
-		
+
+		# Basic safety checks
 		if not player.has_method("is_dashing") or not player.has_method("die"):
 			printerr("Player node missing required methods (is_dashing/die)")
 			return
-			
-		if player.is_dashing():
-			# Player is dashing, stun the enemy
-			print("Enemy hit by dashing player - Stunned")
-			_stun()
-		else:
-			# Player is NOT dashing, player dies (only if enemy is NORMAL)
-			print("Enemy touched non-dashing player - Player Dies")
+
+		# ONLY handle the case where a non-dashing player touches a normal enemy
+		if not player.is_dashing():
+			print("Attempting to make non-dashing player die...")
 			player.die()
+		# else: Dashing player interaction is now handled by the player's check_dash_interactions
+	else:
+		print("Detected body is not in 'player' group.")
+
 
 func _stun():
-	if current_state == State.STUNNED: return # Already stunned
-
+	# (No changes needed here unless you want visual/audio feedback)
+	if current_state == State.STUNNED: return
 	print("Enemy stunned!")
 	current_state = State.STUNNED
 	stun_timer = stun_duration
-	stun_flip_timer = stun_flip_interval # Start the first flip interval
-	velocity = Vector2.ZERO # Stop movement
-	sprite.flip_v = false # Ensure vertical flip starts in a consistent state
+	stun_flip_timer = stun_flip_interval
+	velocity = Vector2.ZERO
+	sprite.flip_v = false
 
-	# Optional: Visual indicator like modulate color
-	# sprite.modulate = Color.CYAN
 
 func _unstun():
+	# (No changes needed here)
 	print("Enemy unstunned.")
 	current_state = State.NORMAL
 	stun_timer = 0.0
-	sprite.flip_v = false # Reset vertical flip
+	sprite.flip_v = false
 
-	# Optional: Reset visual indicator
-	# sprite.modulate = Color.WHITE
 
-# We don't need a separate die() function anymore unless you
-# plan other ways for the enemy to be destroyed.
-# If needed, it would be:
-# func die():
-#     queue_free()
+# --- NEW FUNCTION ---
+func handle_dash_hit():
+	# This is called by the player script when a dash collides with this enemy
+	print(self.name, " received dash hit.")
+	_stun() # Trigger the stun state

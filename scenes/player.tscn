@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0fokcr2ckluq"]
+[gd_scene load_steps=18 format=3 uid="uid://b0fokcr2ckluq"]
 
 [ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="2_qhqgy"]
@@ -87,14 +87,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyoq"]
+size = Vector2(24, 12)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 15
+safe_margin = 0.001
 script = ExtResource("1_g2els")
 speed = 400.0
 gravity = 1200.0
 jump_velocity = -600.0
 dash_speed = 1800.0
-dash_cooldown = 0.8
 initial_dash_duration = 0.1
 death_particle_scene = ExtResource("2_qlg0r")
 
@@ -118,3 +121,11 @@ script = ExtResource("3_qhqgy")
 [node name="Sprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_ur7pv")
+
+[node name="DashHitboxArea" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitboxArea"]
+shape = SubResource("RectangleShape2D_tuyoq")
+
+[connection signal="body_entered" from="DashHitboxArea" to="." method="_on_dash_hitbox_area_body_entered"]
