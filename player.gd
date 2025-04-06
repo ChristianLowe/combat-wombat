@@ -252,18 +252,19 @@ func _start_dash():
 	if original_collision_mask == 0: original_collision_mask = get_collision_mask()
 	if original_collision_layer == 0: original_collision_layer = get_collision_layer()
 
-	# Modify collision for dash movement
+	# Modify collision mask for dash movement
 	var dash_movement_mask = original_collision_mask
 	dash_movement_mask |= (1 << (WALL_LAYER - 1)) # Ensure wall collision
 	dash_movement_mask &= ~(1 << (DASH_TERRAIN_LAYER - 1)) # Ignore terrain shape for movement
 	dash_movement_mask |= (1 << (LAVA_LAYER - 1)) # Ensure lava collision
+	# --- IMPORTANT: Do NOT change the layer the player *is on* ---
+	# set_collision_layer_value(PLAYER_LAYER, false) # <--- REMOVE OR COMMENT OUT THIS LINE
 
-	set_collision_mask(dash_movement_mask)
-	set_collision_layer_value(PLAYER_LAYER, false) # Become non-interactable on player layer
+	set_collision_mask(dash_movement_mask) # Only change the mask (what it collides *with*)
 
 	dash_cooldown_timer = dash_cooldown
 
-
+# Make sure the corresponding _stop_dash restores correctly
 func _stop_dash(hit_wall: bool):
 	if current_dash_state == DashState.DYING or current_dash_state == DashState.NONE: return
 
@@ -273,14 +274,12 @@ func _stop_dash(hit_wall: bool):
 
 	# Restore original collision settings
 	set_collision_mask(original_collision_mask)
-	set_collision_layer(original_collision_layer) # Restore full layer value
-	set_collision_layer_value(PLAYER_LAYER, true) # Ensure player layer is active again
+	# No need to restore the layer if we didn't change it in _start_dash
+	# set_collision_layer(original_collision_layer)
+	# set_collision_layer_value(PLAYER_LAYER, true)
 
 	if hit_wall and previous_state == DashState.INITIAL:
-		# Stop dead only if initial dash hit a wall
 		velocity = Vector2.ZERO
-	# else: Keep momentum if timed out, exited terrain, or terrain dash scraped wall non-fatally
-
 
 # --- PUBLIC DEATH FUNCTION ---
 func die():
