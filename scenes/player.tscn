@@ -56,13 +56,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ur7pv")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_y4r1p")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_d2wvv")
 }, {
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_3v2ag")
 }],
 "loop": true,
@@ -121,6 +121,8 @@ script = ExtResource("3_qhqgy")
 [node name="Sprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_ur7pv")
+animation = &"walking"
+speed_scale = 3.0
 
 [node name="DashHitboxArea" type="Area2D" parent="."]
 collision_mask = 16
