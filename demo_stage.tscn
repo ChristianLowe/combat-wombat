@@ -35,6 +35,12 @@ polygon = PackedVector2Array(6, -1, 80, 155, 172, 155, 224, 141, 314, 157, 624, 
 [node name="Player" type="CharacterBody2D" parent="."]
 collision_mask = 7
 script = ExtResource("2_4p544")
+speed = 400.0
+gravity = 1200.0
+jump_velocity = -600.0
+dash_speed = 1800.0
+dash_cooldown = 0.8
+initial_dash_duration = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(147, 772)
