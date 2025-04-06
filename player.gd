@@ -152,6 +152,11 @@ func process_normal_movement(delta):
 	# Handle horizontal movement input
 	var horizontal_input = Input.get_axis("ui_left", "ui_right")
 	velocity.x = horizontal_input * speed
+	
+	if horizontal_input:
+		$Sprite2D2.play("walking")
+	else:
+		$Sprite2D2.stop()
 	# Friction applied in apply_post_dash_physics
 
 func check_dash_input():
@@ -442,6 +447,8 @@ func die():
 	current_dash_state = DashState.DYING
 	death_timer = death_animation_duration
 	blink_accum = 0.0 # Reset blink effect
+	
+	$Sprite2D2.play("dying")
 
 	velocity = Vector2.ZERO # Stop all movement
 
