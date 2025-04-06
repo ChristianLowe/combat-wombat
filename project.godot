@@ -15,6 +15,10 @@ run/main_scene="uid://npvqgw6cyltl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[global_group]
+
+walls=""
+
 [input]
 
 dash={

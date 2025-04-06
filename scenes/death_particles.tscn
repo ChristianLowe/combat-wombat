@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnr2xrxjadrsr"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wka24"]
+lifetime_randomness = 0.13
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(6, 6, 0)
+emission_shape_scale = Vector3(1.2, 1.2, 1)
+inherit_velocity_ratio = 16.0
+velocity_pivot = Vector3(4, 4, 0)
+gravity = Vector3(0, 98, 0)
+color = Color(1, 0, 0, 1)
+hue_variation_min = -0.15
+hue_variation_max = 0.15
+
+[node name="DeathParticles" type="GPUParticles2D"]
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_wka24")

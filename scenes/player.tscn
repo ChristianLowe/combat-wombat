@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0fokcr2ckluq"]
+[gd_scene load_steps=7 format=3 uid="uid://b0fokcr2ckluq"]
 
 [ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="2_qhqgy"]
-[ext_resource type="Script" uid="uid://0oy2sqhb4sx" path="res://scenes/camera_2d.gd" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://bnr2xrxjadrsr" path="res://scenes/death_particles.tscn" id="2_qlg0r"]
+[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://brkb3wtrl4pu1" path="res://textures/wombats.png" id="4_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
@@ -17,6 +18,7 @@ jump_velocity = -600.0
 dash_speed = 1800.0
 dash_cooldown = 0.8
 initial_dash_duration = 0.1
+death_particle_scene = ExtResource("2_qlg0r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
