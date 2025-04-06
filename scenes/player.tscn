@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0fokcr2ckluq"]
+[gd_scene load_steps=6 format=3 uid="uid://b0fokcr2ckluq"]
 
 [ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://0oy2sqhb4sx" path="res://scenes/camera_2d.gd" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://brkb3wtrl4pu1" path="res://textures/wombats.png" id="4_dqkch"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08n8j"]
-radius = 68.0
-height = 146.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(32, 15)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
@@ -18,10 +19,24 @@ dash_cooldown = 0.8
 initial_dash_duration = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(4.1875, 4.75)
 texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_08n8j")
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+position_smoothing_enabled = true
+script = ExtResource("3_qhqgy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("4_dqkch")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 16)
