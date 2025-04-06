@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://dspiij2p5yf5h" path="res://audio/musicloop.wav" id="1_k0juu"]
 [ext_resource type="Texture2D" uid="uid://g5ujlevf20kv" path="res://textures/tilesheet.png" id="2_k0juu"]
-[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://b1c70jv6nvvf7" path="res://scenes/enemy.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://b0fokcr2ckluq" path="res://scenes/player.tscn" id="3_71j4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj7yv"]
