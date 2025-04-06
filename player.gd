@@ -128,9 +128,9 @@ func _physics_process(delta):
 		# Sprite flipping based on horizontal velocity
 		if not is_dashing(): # Only flip sprite if not currently mid-dash
 			if velocity.x > 0:
-				$Sprite2D.flip_h = false
+				$Sprite2D2.flip_h = true
 			elif velocity.x < 0:
-				$Sprite2D.flip_h = true
+				$Sprite2D2.flip_h = false
 
 
 func process_normal_movement(delta):
