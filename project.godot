@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Combat Wombat"
-run/main_scene="uid://npvqgw6cyltl"
+run/main_scene="uid://bp41o377i1p0e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
