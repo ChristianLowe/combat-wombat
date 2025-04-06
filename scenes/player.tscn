@@ -1,13 +1,91 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0fokcr2ckluq"]
+[gd_scene load_steps=17 format=3 uid="uid://b0fokcr2ckluq"]
 
 [ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bnr2xrxjadrsr" path="res://scenes/death_particles.tscn" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://0oy2sqhb4sx" path="res://scenes/camera_2d.gd" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://brkb3wtrl4pu1" path="res://textures/wombats.png" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b1mhhu5vlbixl" path="res://textures/wombat1.png" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(30, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur7pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qlg0r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur7pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4r1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}],
+"loop": true,
+"name": &"dying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 15
@@ -37,8 +115,6 @@ limit_right = 1024
 position_smoothing_enabled = true
 script = ExtResource("3_qhqgy")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
-texture = ExtResource("5_qlg0r")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 16)
+sprite_frames = SubResource("SpriteFrames_ur7pv")
