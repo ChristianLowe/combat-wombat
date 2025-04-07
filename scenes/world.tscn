@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://npvqgw6cyltl"]
+[gd_scene load_steps=13 format=4 uid="uid://npvqgw6cyltl"]
 
 [ext_resource type="Script" uid="uid://dlf4438ooxf43" path="res://scenes/world.gd" id="1_71j4m"]
 [ext_resource type="AudioStream" uid="uid://dspiij2p5yf5h" path="res://audio/musicloop.wav" id="1_k0juu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://yeuexfsftysl" path="res://scenes/hud.gd" id="2_qfnet"]
 [ext_resource type="PackedScene" uid="uid://b1c70jv6nvvf7" path="res://scenes/enemy.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://b0fokcr2ckluq" path="res://scenes/player.tscn" id="3_71j4m"]
+[ext_resource type="Texture2D" uid="uid://b2j17m4lxwbvw" path="res://gratz-removebg-preview.png" id="7_i7141"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj7yv"]
 texture = ExtResource("2_k0juu")
@@ -89,7 +90,7 @@ color = Color(0, 0, 0, 0.501961)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 128
 text = "00:00.00"
 
 [node name="Musicloop" type="AudioStreamPlayer" parent="."]
@@ -136,11 +137,17 @@ updown = true
 position = Vector2(745, 2431)
 updown = true
 
-[node name="DEBUG" type="Node2D" parent="."]
-position = Vector2(515, 2431)
+[node name="DEBUG2" type="Node2D" parent="."]
+position = Vector2(517, 2431)
 
 [node name="GoalArea" type="Area2D" parent="."]
 position = Vector2(147, 2646)
 
 [node name="GoalAreaCollision" type="CollisionShape2D" parent="GoalArea"]
 shape = SubResource("RectangleShape2D_qfnet")
+
+[node name="Sprite2D" type="Sprite2D" parent="GoalArea"]
+z_index = 1
+position = Vector2(69.75, 15.25)
+scale = Vector2(0.451172, 0.462891)
+texture = ExtResource("7_i7141")
