@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 	if elapsed > 2.5:
 		$CenterContainer/TextureRect4.visible = true
 	if elapsed > 7.5:
-		get_tree().change_scene_to_file("res://scenes/world.tscn")
+		get_tree().change_scene_to_file("res://scenes/title.tscn")
