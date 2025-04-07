@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var stun_duration: float = 5.0
 @export var stun_flip_interval: float = 0.5
 
+@export var updown: bool = false
+
 # Collision Layers (ensure these match your project settings)
 const WALL_LAYER = 2
 const ENEMY_LAYER = 5 # Assign a layer for enemies if you haven't
@@ -45,7 +47,10 @@ func _physics_process(delta):
 
 func process_normal_movement(delta):
 	# Apply horizontal movement
-	velocity = Vector2(direction * speed, 0)
+	if updown:
+		velocity = Vector2(0, direction * speed)
+	else:
+		velocity = Vector2(direction * speed, 0)
 
 	# Apply movement and check for wall collisions
 	move_and_slide()
@@ -76,16 +81,18 @@ func check_wall_collisions():
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		if collision:
-			if abs(collision.get_normal().x) > 0.9:
+			var cond_one = updown and abs(collision.get_normal().y) > 0.9
+			var cond_two = not updown and abs(collision.get_normal().x) > 0.9
+			if cond_one or cond_two:
 				direction *= -1
 				global_position += collision.get_normal() * 0.5
 				break
 
 func update_sprite_flip():
 	# Horizontal flip based on movement direction (only when NORMAL)
-	if direction > 0:
+	if updown and direction > 0:
 		sprite.flip_h = false
-	elif direction < 0:
+	elif updown and direction < 0:
 		sprite.flip_h = true
 func _on_detection_area_body_entered(body):
 	# Simplified: Only triggers if player is NOT dashing and enemy is NORMAL
