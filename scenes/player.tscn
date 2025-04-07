@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0fokcr2ckluq"]
+[gd_scene load_steps=19 format=3 uid="uid://b0fokcr2ckluq"]
 
 [ext_resource type="Script" uid="uid://dtmcrptt8qkvw" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://odi5omhrp4o3" path="res://playersquare.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bnr2xrxjadrsr" path="res://scenes/death_particles.tscn" id="2_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://4vq0k742o70a" path="res://audio/death.wav" id="3_fjrip"]
 [ext_resource type="Script" uid="uid://0oy2sqhb4sx" path="res://scenes/camera_2d.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://brkb3wtrl4pu1" path="res://textures/wombats.png" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b1mhhu5vlbixl" path="res://textures/wombat1.png" id="5_qlg0r"]
@@ -101,6 +102,9 @@ dash_speed = 1800.0
 initial_dash_duration = 0.1
 death_particle_scene = ExtResource("2_qlg0r")
 
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fjrip")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(4.1875, 4.75)
@@ -115,6 +119,7 @@ zoom = Vector2(1.5, 1.5)
 limit_left = 0
 limit_top = 0
 limit_right = 1024
+limit_bottom = 2880
 position_smoothing_enabled = true
 script = ExtResource("3_qhqgy")
 

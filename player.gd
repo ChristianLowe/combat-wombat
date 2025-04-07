@@ -496,6 +496,7 @@ func die():
 
 	# Play death animation if it exists
 	if sprite.sprite_frames.has_animation("dying"):
+		$Death.play()
 		sprite.play("dying")
 	else:
 		print("Warning: No 'dying' animation found for sprite.")
