@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://npvqgw6cyltl"]
+[gd_scene load_steps=12 format=4 uid="uid://npvqgw6cyltl"]
 
 [ext_resource type="Script" uid="uid://dlf4438ooxf43" path="res://scenes/world.gd" id="1_71j4m"]
 [ext_resource type="AudioStream" uid="uid://dspiij2p5yf5h" path="res://audio/musicloop.wav" id="1_k0juu"]
 [ext_resource type="Texture2D" uid="uid://g5ujlevf20kv" path="res://textures/tilesheet.png" id="2_k0juu"]
-[ext_resource type="PackedScene" uid="uid://04s45txd1nau" path="res://scenes/enemy.tscn" id="3_4wyf3"]
+[ext_resource type="Script" uid="uid://yeuexfsftysl" path="res://scenes/hud.gd" id="2_qfnet"]
+[ext_resource type="PackedScene" uid="uid://b1c70jv6nvvf7" path="res://scenes/enemy.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://b0fokcr2ckluq" path="res://scenes/player.tscn" id="3_71j4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj7yv"]
@@ -61,8 +62,35 @@ custom_data_layer_0/name = ""
 custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_aqk2v")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfnet"]
+size = Vector2(256, 256)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_71j4m")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("2_qfnet")
+
+[node name="TimerContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TimeBackground" type="ColorRect" parent="HUD/TimerContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="TimerLabel" type="Label" parent="HUD/TimerContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "00:00.00"
 
 [node name="Musicloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_k0juu")
@@ -110,3 +138,9 @@ updown = true
 
 [node name="DEBUG" type="Node2D" parent="."]
 position = Vector2(515, 2431)
+
+[node name="GoalArea" type="Area2D" parent="."]
+position = Vector2(147, 2646)
+
+[node name="GoalAreaCollision" type="CollisionShape2D" parent="GoalArea"]
+shape = SubResource("RectangleShape2D_qfnet")
